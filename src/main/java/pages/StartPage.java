@@ -1,16 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static pages.MainPage.inputTextPlusEnter_xpath;
+import static pages.MainPage.inputText_xpath;
 
-public class StartPage extends MainPage{
-    //private static WebDriver driver;
+public class StartPage{
+    private static WebDriver driver;
 
     private final static String first_name_id = "//*[@id='application_first_name']";
     private final static String middle_initial_id = "//*[@id='application_middle_initial']";
@@ -23,13 +19,11 @@ public class StartPage extends MainPage{
     private final static String input_mobile_phone = "9177625962";
 
     public StartPage(WebDriver driver) {
-
-        //this.driver = driver;
-        super(driver);
+        this.driver = driver;
     }
 
     /**
-     *
+     * Populated fields on the start page
      * */
     public static void populateStartForm(){
 
@@ -37,12 +31,5 @@ public class StartPage extends MainPage{
         inputText_xpath(middle_initial_id, input_middle_initial);
         inputText_xpath(last_name_id, input_last_name_id);
         inputTextPlusEnter_xpath(mobile_phone_id, input_mobile_phone);
-
-
-        //driver.findElement(By.xpath(mobile_phone_id)).sendKeys(Keys.ENTER);
-        /*driver.manage().timeouts().implicitlyWait(60, SECONDS);
-        driver.findElement(By.xpath("//input[@value='Get First Loan']")).click();
-        driver.manage().timeouts().implicitlyWait(60, SECONDS);*/
-        //Assert.assertEquals(error_mesg_name, driver.findElement(By.xpath(name_xpath)).getText());
     }
 }

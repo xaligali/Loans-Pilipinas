@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-//import org.junit.Assert;
 import java.util.List;
 
 import static pages.MainPage.inputText_xpath;
@@ -19,7 +18,7 @@ public class PersonalInformationPage{
     public final static String dateofbirth_id = "//*[@id='application_date_of_birth']";
     public final static String email_id = "//*[@id='application_email']";
     public final static String button_continue_xpath = "//*[text() ='Continue']";
-    public final static String error_mesg = "//*[text() ='This field is required.']";
+    public final static String error_mesg = "//*[contains(text(),'This field is required')]";
     private final static String input_doc_id = "1111111111";
     private final static String input_dateofbirth = "02151991";
     private final static String input_email = "xalgalrin@mailinator.com";
@@ -28,20 +27,21 @@ public class PersonalInformationPage{
     public PersonalInformationPage(WebDriver driver) {
 
         this.driver = driver;
-        //super(driver);
     }
 
-    public static void checkText(){
+    public String checkText(){
         waitCss(personal_inf_css);
-        //assertEquals(text, driver.findElement(By.xpath(personal_inf_css)).getText());
+        String text = driver.findElement(By.cssSelector(personal_inf_css)).getText();
+        return text;
     }
 
-    public void selectDocTypeAndInputDocId(){
+    private static void selectDocTypeAndInputDocId(){
         Select select = new Select(driver.findElement(By.xpath("//*[@id='application_type_of_document']")));
         select.selectByIndex(1);
         inputText_xpath(doc_id, input_doc_id);
     }
-    public int checkRequiredThreeFields(){
+
+    public static int checkRequiredThreeFields(){
 
         selectDocTypeAndInputDocId();
         driver.findElement(By.xpath(button_continue_xpath)).click();
@@ -50,7 +50,7 @@ public class PersonalInformationPage{
         return size_list;
     }
 
-    public int checkRequiredTwoFields(){
+    public static int checkRequiredTwoFields(){
 
         selectDocTypeAndInputDocId();
         inputText_xpath(dateofbirth_id, input_dateofbirth);
@@ -60,7 +60,7 @@ public class PersonalInformationPage{
         return size_list;
     }
 
-    public int checkRequiredOneFields(){
+    public static int checkRequiredOneFields(){
 
         selectDocTypeAndInputDocId();
         inputText_xpath(dateofbirth_id, input_dateofbirth);
