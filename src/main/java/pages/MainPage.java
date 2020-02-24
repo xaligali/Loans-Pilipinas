@@ -16,7 +16,7 @@ public class MainPage {
     }
 
     /**
-     * Метод вызывает главную страницу
+     * Method calls the main page
      */
     public void open() {
 
@@ -25,38 +25,33 @@ public class MainPage {
 
 
     /**
-     * Ввод данных в поле
+     * Input data in field
      *
-     * @param locator - xpath элемента,
-     * @param input   - строка с данными
+     * @param locator - xpath element,
+     * @param input   - field with data
      */
     public static void inputText_xpath(String locator, String input) {
 
         driver.findElement(By.xpath(locator)).sendKeys(input);
     }
 
+    /**
+     * Input data in field and press ENTER
+     *
+     * @param locator - xpath element,
+     * @param input   - field with data
+     */
     public static void inputTextPlusEnter_xpath(String locator, String input) {
 
         driver.findElement(By.xpath(locator)).sendKeys(input + Keys.ENTER);
     }
     /**
-     * Ожидание появления элемента
+     * Waiting for an item to appear
      *
-     * @param css - css элемента
+     * @param css - css element
      */
     public static void waitCss(String css) {
         WebDriverWait wait = new WebDriverWait(driver, 500);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(css)));
     }
-
-    /**
-     * Ожидание появления элемента
-     *
-     * @param xpath - css элемента
-     */
-    public static void waitXpath(String xpath) {
-        WebDriverWait wait = new WebDriverWait(driver, 500);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-    }
-
 }
